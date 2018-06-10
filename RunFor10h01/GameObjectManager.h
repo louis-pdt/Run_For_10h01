@@ -9,16 +9,17 @@ public:
 	GameObjectManager();
 	~GameObjectManager();
 
-	void Add(VisibleGameObject* gameObject);
+	void Add(std::string name, VisibleGameObject* gameObject);
 	int GetObjectCount() const;
 	
 	void DrawAll(sf::RenderWindow& renderWindow);
 	void UpdateAll();
+	VisibleGameObject* Get(std::string name) const;
 
 	void RemoveAll();
 
 private:
-	std::vector<VisibleGameObject*> _gameObjects;
+	std::map<std::string, VisibleGameObject*> _gameObjects;
 	
 	sf::Clock clock;
 };

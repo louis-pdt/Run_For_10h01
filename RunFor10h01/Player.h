@@ -13,5 +13,6 @@ public :
 
 private :
 	int stepsSinceLastJump;
-	static const int maxLatVel = 5;
+	static const int maxLatVel = 8;
+	static const int maxDownVel = 10;
 };

@@ -28,7 +28,7 @@ Ground::Ground(b2World* World, float X, float Y) :
 Ground::Ground(pugi::xml_node root, b2World *World) : VisibleGameObject(root) {
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_staticBody;
-	myBodyDef.position.Set(GetPosition().x, GetPosition().y); //set the starting position
+	myBodyDef.position.Set(root.attribute("posX").as_float(), root.attribute("posY").as_float()); //set the starting position
 	myBodyDef.angle = 0; //set the starting angle
 
 	mainBody = World->CreateBody(&myBodyDef);

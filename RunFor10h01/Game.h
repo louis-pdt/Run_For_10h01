@@ -14,6 +14,7 @@
 #include "MainMenu.h"
 #include "h1001Screen.h"
 #include "PauseMenu.h"
+#include "GameOverScreen.h"
 
 class Game
 {
@@ -36,13 +37,16 @@ private:
 
 	static void ObstacleGenerator(float secondes);
 
+	static void GameOverTest();
+
 	enum GameState {
 		Uninitialized, ShowingRunFor10h01, Paused,
-		ShowingMenu, Playing, Exiting
+		ShowingMenu, Playing, Exiting, GameOver
 	};
 	enum GameObstacle{Haut, Bas};
 
 	static int nbrObstacles;
+	static int nbrMaxObstacles;
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;

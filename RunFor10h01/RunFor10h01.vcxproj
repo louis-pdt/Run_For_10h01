@@ -151,6 +151,7 @@
     <ClInclude Include="b2GLDraw.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="GameOverScreen.h" />
     <ClInclude Include="glext.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="h1001Screen.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="b2GLDraw.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="h1001Screen.cpp" />
     <ClCompile Include="MainMenu.cpp" />

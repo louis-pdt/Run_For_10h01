@@ -37,7 +37,7 @@ Player::Player(b2World* World, float X, float Y):
 Player::Player(pugi::xml_node root, b2World* World) : VisibleGameObject(root) {
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
-		myBodyDef.position.Set(GetPosition().x, GetPosition().y); //set the starting position
+		myBodyDef.position.Set(root.attribute("posX").as_float(), root.attribute("posY").as_float()); //set the starting position
 		myBodyDef.fixedRotation = true; //le player ne tourne pas
 
 		mainBody = World->CreateBody(&myBodyDef);
@@ -86,6 +86,11 @@ void Player::Update() {
 	float velChange = desiredVel - vel.x;
 	float impulse = mainBody->GetMass() * velChange; 
 	mainBody->ApplyLinearImpulse(b2Vec2(impulse, 0), mainBody->GetWorldCenter(), true);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+
+		mainBody->ApplyLinearImpulse(b2Vec2(0, mainBody->GetMass() * (maxDownVel - vel.y)), mainBody->GetWorldCenter(), true);
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && stepsSinceLastJump > 120)
 	{//pour eviter le cumul des sauts, on autorise 1 saut / 2 secondes ( on est en 120hz)

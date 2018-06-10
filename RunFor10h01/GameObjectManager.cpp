@@ -10,13 +10,19 @@ GameObjectManager::~GameObjectManager()
 {
 }
 
-void GameObjectManager::Add(VisibleGameObject* gameObject)
+void GameObjectManager::Add(std::string name, VisibleGameObject* gameObject)
 {
-
-	_gameObjects.push_back(gameObject);
+	_gameObjects.insert(std::pair<std::string, VisibleGameObject*>(name, gameObject));
 }
 
+VisibleGameObject* GameObjectManager::Get(std::string name) const
+{
+	std::map<std::string, VisibleGameObject*>::const_iterator results = _gameObjects.find(name);
+	if (results == _gameObjects.end())
+		return NULL;
+	return results->second;
 
+}
 
 int GameObjectManager::GetObjectCount() const
 {
@@ -26,27 +32,29 @@ int GameObjectManager::GetObjectCount() const
 
 void GameObjectManager::DrawAll(sf::RenderWindow& renderWindow)
 {
-
-	for(auto it : _gameObjects)
+	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
+	while (itr != _gameObjects.end())
 	{
-		it->Draw(renderWindow);
-		it++;
+		itr->second->Draw(renderWindow);
+		itr++;
 	}
 }
 
 void GameObjectManager::UpdateAll()
 {
+	std::map<std::string, VisibleGameObject*>::const_iterator itr = _gameObjects.begin();
 	float timeDelta = clock.restart().asSeconds();
-	
-	for (auto it : _gameObjects)
+
+	while (itr != _gameObjects.end())
 	{
-		it->Update();
+		itr->second->Update();
+		itr++;
 	}
 }
 
 void GameObjectManager::RemoveAll() {
-	while(_gameObjects.size() != 0){
-		_gameObjects[_gameObjects.size() - 1]->~VisibleGameObject();
-		_gameObjects.pop_back();
+	for (auto itr : _gameObjects){
+		itr.second->~VisibleGameObject();
 	}
+	_gameObjects.clear();
 }

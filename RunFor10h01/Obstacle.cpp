@@ -26,7 +26,7 @@ Obstacle::Obstacle(b2World* World, float X, float Y) :
 Obstacle::Obstacle(pugi::xml_node root, b2World* World) : VisibleGameObject(root) {
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_kinematicBody;
-	myBodyDef.position.Set(GetPosition().x, GetPosition().y); //set the starting position
+	myBodyDef.position.Set(root.attribute("posX").as_float(), root.attribute("posY").as_float()); //set the starting position
 	myBodyDef.fixedRotation = true; //le player ne tourne pas
 
 	mainBody = World->CreateBody(&myBodyDef);

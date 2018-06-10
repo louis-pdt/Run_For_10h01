@@ -22,8 +22,10 @@ void Game::Start(void)
 	root = doc.child("VisibleGameObject");
 	Ground* ground = new Ground(root, myWorld);
 
-	_gameObjectManager.Add(player1);
-	_gameObjectManager.Add(ground);
+	_gameObjectManager.Add("player1", player1);
+	_gameObjectManager.Add("ground", ground);
+	
+	nbrObstacles = 0;
 
 	srand((int)time(NULL));//initialisation de random pour la generation aleatoire d obstacles
 	nbrObstacles = 15; //on commence avec 15 obstacles
@@ -90,6 +92,15 @@ void Game::GameLoop()
 		Showh1001Screen();
 		break;
 	}
+	case Game::GameOver:
+	{
+		GameOverScreen gameOver;
+		gameOver.Show(_mainWindow);
+		Sleep(2000);
+		_gameObjectManager.RemoveAll();
+		_gameState = Uninitialized;
+		Game::Start();
+	}
 	case Game::Playing:
 	{
 		double start = clock.getElapsedTime().asMilliseconds();
@@ -99,6 +110,7 @@ void Game::GameLoop()
 
 		_gameObjectManager.UpdateAll();
 		ObstacleGenerator(clock.getElapsedTime().asSeconds());
+		GameOverTest();
 		//_gameObjectManager.DrawAll(_mainWindow);
 
 		myWorld->DrawDebugData();
@@ -161,15 +173,16 @@ void Game::ShowPauseMenu()
 }
 
 void Game::ObstacleGenerator(float secondes) {
-	nbrObstacles = 10 + ((int)secondes) % 30;  //toute les 30 s, on ajoute un obstacle
-	if (_gameObjectManager.GetObjectCount() < nbrObstacles+2) {//+2 car il y a le sol et le joueur
-		if ((rand() % 200) == 42) { //1 chance sur 200 de generer un block, et pour le 42... pourquoi pas ? :p
+	nbrMaxObstacles = 8 + ((int)secondes) % 15;  //toute les 15 s, on ajoute un obstacle
+	if (_gameObjectManager.GetObjectCount() < nbrMaxObstacles+2) {  //+2 car il y a le sol et le joueur
+		if ((rand() % 100) == 42) { //1 chance sur 100 de generer un block, et pour le 42... pourquoi pas ? :p
+			nbrObstacles += 1;
 			if ((rand() % 2) == 0) {
 				pugi::xml_document doc;
 				doc.load_file("../RunFor10h01/sourceXML/ObstacleBas.xml");
 				pugi::xml_node root = doc.child("VisibleGameObject");
 				Obstacle* monObsBas = new Obstacle(root, myWorld);
-				_gameObjectManager.Add(monObsBas); //obstacle bas
+				_gameObjectManager.Add("obstacle" + std::to_string(nbrObstacles), monObsBas); //obstacle bas
 			}
 			
 			else {
@@ -177,11 +190,18 @@ void Game::ObstacleGenerator(float secondes) {
 				doc.load_file("../RunFor10h01/sourceXML/ObstacleHaut.xml");
 				pugi::xml_node root = doc.child("VisibleGameObject");
 				Obstacle* monObsHaut = new Obstacle(root, myWorld);
-				_gameObjectManager.Add(monObsHaut); //obstacle haut
+				_gameObjectManager.Add(std::to_string(nbrObstacles), monObsHaut); //obstacle haut
 			}
 		}
 	}
 
+}
+
+void Game::GameOverTest() {
+	VisibleGameObject* player1 = _gameObjectManager.Get("player1");
+	if (player1->GetPosition().x < 0) {
+		_gameState = GameOver;
+	}
 }
 
 
@@ -196,4 +216,5 @@ sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
 b2World* Game::myWorld =nullptr;
 int Game::nbrObstacles;
+int Game::nbrMaxObstacles;
 sf::Clock Game::clock;

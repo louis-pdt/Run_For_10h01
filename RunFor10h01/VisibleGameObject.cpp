@@ -11,10 +11,9 @@ VisibleGameObject::VisibleGameObject(float sizeX, float sizeY)
 
 VisibleGameObject::VisibleGameObject(pugi::xml_node root):
 	_isLoaded(false), 
-	size(sf::Vector2f(root.attribute("width").as_float(), root.attribute("height").as_float())),
-	position(sf::Vector2f(root.attribute("posX").as_float(), root.attribute("posY").as_float()))
-{
-	
+	size(sf::Vector2f(root.attribute("width").as_float(), root.attribute("height").as_float())), 
+	mainBody(NULL)
+{	
 }
 
 VisibleGameObject::~VisibleGameObject()
@@ -52,7 +51,10 @@ void VisibleGameObject::Update()
 
 sf::Vector2f VisibleGameObject::GetPosition() const
 {
-	return position;
+	if (mainBody != NULL)
+		return sf::Vector2f(mainBody->GetPosition().x, mainBody->GetPosition().y);
+
+	return sf::Vector2f(-1.f, -1.f);
 }
 
 sf::Sprite& VisibleGameObject::GetSprite()
@@ -66,7 +68,7 @@ bool VisibleGameObject::IsLoaded() const
 }
 
 sf::Vector2f VisibleGameObject::GetSize() const{
-	return size;
+	return size; // on 
 }
 
 b2Body* VisibleGameObject::GetMainBody() const{

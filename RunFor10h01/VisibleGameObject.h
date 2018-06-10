@@ -37,8 +37,7 @@ protected:
 	bool _isLoaded;
 
 private:
-	//static float SCALE;
+	static const int SCALE = 30;
 	const sf::Vector2f size ;
-	const sf::Vector2f position;
 	
 };
