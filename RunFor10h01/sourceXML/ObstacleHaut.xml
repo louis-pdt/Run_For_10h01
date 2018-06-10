@@ -1,0 +1,9 @@
+<?xml version = "1.0"?>
+<VisibleGameObject 
+	posX="64.f" 
+	posY="24.f" 
+	width="1.5f"
+	height="1.5f" 
+	density="1.f"
+	linVelX="-12" linVelY="0" 
+/>

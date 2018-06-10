@@ -1,0 +1,6 @@
+<?xml version = "1.0"?>
+<VisibleGameObject>
+	 <Position> x="2" y="3" </Position>
+	 <Size> width="1" height="1" </Size>
+	 <Density> 1 </Density>
+</VisibleGameObject>

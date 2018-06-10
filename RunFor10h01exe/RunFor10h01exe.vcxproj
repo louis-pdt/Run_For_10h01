@@ -20,14 +20,14 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2ABC9D1A-883A-49F1-A696-E5E72D28FA4C}</ProjectGuid>
+    <ProjectGuid>{FDE469E3-89DF-4594-A1EC-D0D68CBA1510}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>RunFor10h01</RootNamespace>
+    <RootNamespace>RunFor10h01exe</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -148,38 +148,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="b2GLDraw.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="glext.h" />
-    <ClInclude Include="Ground.h" />
-    <ClInclude Include="h1001Screen.h" />
-    <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Obstacle.h" />
-    <ClInclude Include="ObstacleBas.h" />
-    <ClInclude Include="PauseMenu.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="VisibleGameObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="b2GLDraw.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObjectManager.cpp" />
-    <ClCompile Include="Ground.cpp" />
-    <ClCompile Include="h1001Screen.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Obstacle.cpp" />
-    <ClCompile Include="PauseMenu.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RunFor10h01exe.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="VisibleGameObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RunFor10h01\RunFor10h01.vcxproj">
+      <Project>{2abc9d1a-883a-49f1-a696-e5e72d28fa4c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
