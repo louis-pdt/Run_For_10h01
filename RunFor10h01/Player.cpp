@@ -87,6 +87,10 @@ void Player::Update() {
 	float impulse = mainBody->GetMass() * velChange; 
 	mainBody->ApplyLinearImpulse(b2Vec2(impulse, 0), mainBody->GetWorldCenter(), true);
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		mainBody->ApplyLinearImpulse(b2Vec2(0, mainBody->GetMass() * (maxLatVel - vel.y)), mainBody->GetWorldCenter(), true);
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && stepsSinceLastJump > 120)
 	{//pour eviter le cumul des sauts, on autorise 1 saut / 2 secondes ( on est en 120hz)
 		stepsSinceLastJump = 0;

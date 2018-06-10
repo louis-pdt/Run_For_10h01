@@ -190,7 +190,9 @@ const GameObjectManager& Game::GetGameObjectManager()
 	return Game::_gameObjectManager;
 }
 
-
+void Game::GameOverTest() {
+	
+}
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;

@@ -9,13 +9,12 @@ VisibleGameObject::VisibleGameObject(float sizeX, float sizeY)
 
 
 
-VisibleGameObject::VisibleGameObject(pugi::xml_node root):
-	_isLoaded(false), 
+VisibleGameObject::VisibleGameObject(pugi::xml_node root) :
+	_isLoaded(false),
 	size(sf::Vector2f(root.attribute("width").as_float(), root.attribute("height").as_float())),
-	position(sf::Vector2f(root.attribute("posX").as_float(), root.attribute("posY").as_float()))
-{
-	
-}
+	position(sf::Vector2f(root.attribute("posX").as_float(), root.attribute("posY").as_float())),
+	label(root.attribute("label").as_string())
+{}
 
 VisibleGameObject::~VisibleGameObject()
 {

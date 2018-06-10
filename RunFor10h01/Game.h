@@ -35,7 +35,7 @@ private:
 	static void ShowPauseMenu();
 
 	static void ObstacleGenerator(float secondes);
-
+	static void GameOverTest();
 	enum GameState {
 		Uninitialized, ShowingRunFor10h01, Paused,
 		ShowingMenu, Playing, Exiting

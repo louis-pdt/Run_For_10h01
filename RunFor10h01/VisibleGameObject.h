@@ -16,6 +16,7 @@ public:
 
 	virtual sf::Vector2f GetPosition() const;
 	virtual sf::Vector2f GetSize() const;
+	virtual std::string GetLabel() const;
 	virtual b2Body *GetMainBody() const;
 	virtual bool IsLoaded() const;
 	virtual void Update();
@@ -40,5 +41,5 @@ private:
 	//static float SCALE;
 	const sf::Vector2f size ;
 	const sf::Vector2f position;
-	
+	const std::string label;
 };

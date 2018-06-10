@@ -2,9 +2,9 @@
 <VisibleGameObject
 	label = "ObstacleBas"
 	posX="64.f" 
-	posY="27.5f" 
-	width="1.5f"
-	height="1.5f" 
-	density="1.f"
+	posY="27.f" 
+	width="1.2f"
+	height="0.5f" 
+	density="1.5f"
 	linVelX="-12.f" linVelY="0.f" 
 />
