@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\VisibleObject">
+      <UniqueIdentifier>{c11ed204-b893-4b3b-963c-cf797b349f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InterfaceScreens">
+      <UniqueIdentifier>{21497461-67e7-4c9d-932f-c5d465a16672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\InterfaceScreens">
+      <UniqueIdentifier>{b0841bcd-2c60-425e-8acf-675776cafba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\VisibleObject">
+      <UniqueIdentifier>{c6977a4d-2c5b-44fb-aa4b-8504adb848a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -21,52 +33,46 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="b2GLDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="glext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="h1001Screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Obstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObstacleBas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\VisibleObject</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\VisibleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files\VisibleObject</Filter>
+    </ClInclude>
+    <ClInclude Include="h1001Screen.h">
+      <Filter>Header Files\InterfaceScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\InterfaceScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Header Files\InterfaceScreens</Filter>
     </ClInclude>
     <ClInclude Include="VisibleGameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\VisibleObject</Filter>
     </ClInclude>
     <ClInclude Include="GameOverScreen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\InterfaceScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="DescriptifJeu.h">
+      <Filter>Header Files\InterfaceScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListenerJump.h">
+      <Filter>Header Files\InterfaceScreens</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="b2GLDraw.cpp">
-      <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Resource Files</Filter>
@@ -74,29 +80,38 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>Resource Files</Filter>
+    <ClCompile Include="GameOverScreen.cpp">
+      <Filter>Resource Files\InterfaceScreens</Filter>
     </ClCompile>
     <ClCompile Include="h1001Screen.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\InterfaceScreens</Filter>
     </ClCompile>
     <ClCompile Include="PauseMenu.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\InterfaceScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Resource Files\VisibleObject</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\VisibleObject</Filter>
     </ClCompile>
     <ClCompile Include="VisibleGameObject.cpp">
+      <Filter>Resource Files\VisibleObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Resource Files\InterfaceScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Resource Files\VisibleObject</Filter>
+    </ClCompile>
+    <ClCompile Include="DescriptifJeu.cpp">
+      <Filter>Resource Files\InterfaceScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactListenerJump.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameOverScreen.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

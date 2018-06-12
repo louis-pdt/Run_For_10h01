@@ -4,6 +4,8 @@
 #include "Box2D/Box2D.h"
 #include "pugixml.hpp"
 
+/** classe abstraite mere de tous les elements visibles du jeu; contient un constructeur general, ainsi que des methodes update et draw a overrider
+elle contient donc a la fois un corps de box2d et un sprite de sfml*/
 class VisibleGameObject
 {
 public:

@@ -1,7 +1,7 @@
 <?xml version = "1.0"?>
 <VisibleGameObject
 	  posX="32.f" posY="28.f" 
-	  width="1000.f" 
+	  width="70.f" 
 	  height="0.25f" 
 	  density="1"
 />

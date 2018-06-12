@@ -8,6 +8,8 @@ public :
 	void Jump();
 	void Update();
 	void Draw(sf::RenderWindow& rw);
+	void startContact();
+	void endContact();
 
 	//std::string GetObjectType() const;
 
@@ -15,4 +17,5 @@ private :
 	int stepsSinceLastJump;
 	static const int maxLatVel = 8;
 	static const int maxDownVel = 10;
+	int nbrContacts;
 };

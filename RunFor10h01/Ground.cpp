@@ -21,7 +21,7 @@ Ground::Ground(b2World* World, float X, float Y) :
 
 	Load("../RunFor10h01/images/Wall.png");
 	assert(IsLoaded());
-	GetSprite().setPosition(GetPosition());
+	GetSprite().setPosition((GetPosition().x - GetSize().x) * 30.f, (GetPosition().y - GetSize().y) * 30.f);
 	
 }
 
@@ -41,9 +41,9 @@ Ground::Ground(pugi::xml_node root, b2World *World) : VisibleGameObject(root) {
 	boxFixtureDef.density = 0;
 	mainBody->CreateFixture(&boxFixtureDef);
 
-	Load("../RunFor10h01//images/Wall.png");
+	Load("../RunFor10h01/images/Ground.png");
 	assert(IsLoaded());
-	GetSprite().setPosition(GetPosition());
+	GetSprite().setPosition((GetPosition().x - GetSize().x) * 30.f, (GetPosition().y - GetSize().y) * 30.f);
 }
 
 void Ground::Draw(sf::RenderWindow & rw)

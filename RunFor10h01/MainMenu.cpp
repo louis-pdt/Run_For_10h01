@@ -63,7 +63,6 @@ MainMenu::MenuResult  MainMenu::GetMenuResponse(sf::RenderWindow& window)
 
 	while (window.pollEvent(menuEvent))
 	{
-		std::cout << "x : " << sf::Mouse::getPosition().x << "  y : " << sf::Mouse::getPosition().y << std::endl;
 		if (menuEvent.type == sf::Event::MouseButtonPressed)
 		{
 			return HandleClick(menuEvent.mouseButton.x, menuEvent.mouseButton.y);

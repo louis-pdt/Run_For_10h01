@@ -2,7 +2,6 @@
 #include "Game.h"
 #include <vector>
 
-
 void Game::Start(void)
 {
 	if (_gameState != Uninitialized)
@@ -10,37 +9,26 @@ void Game::Start(void)
 
 	_mainWindow.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Run for 10h01");
 	
-	b2Vec2 gravity(0, 10.f); //normal earth gravity, 9.8 m/s/s straight down!
-	myWorld = new b2World(gravity);
+	b2Vec2 gravity(0, 20.f); //normal earth gravity, 9.8 m/s/s straight down!
+	myWorld = std::make_unique<b2World>(gravity);
 
 	pugi::xml_document doc;
 	doc.load_file("../RunFor10h01/sourceXML/Player.xml");
 	pugi::xml_node root = doc.child("VisibleGameObject");
-	Player* player1 = new Player(root, myWorld);
+	Player* player1 = new Player(root, myWorld.get());
 
 	doc.load_file("../RunFor10h01/sourceXML/Ground.xml");
 	root = doc.child("VisibleGameObject");
-	Ground* ground = new Ground(root, myWorld);
+	Ground* ground = new Ground(root, myWorld.get());
 
 	_gameObjectManager.Add("player1", player1);
 	_gameObjectManager.Add("ground", ground);
+
+	myWorld->SetContactListener(&contactListInstance);
 	
 	nbrObstacles = 0;
 
 	srand((int)time(NULL));//initialisation de random pour la generation aleatoire d obstacles
-	nbrObstacles = 15; //on commence avec 15 obstacles
-	clock;
-
-	//initialisation debugger graphique box2d
-	b2GLDraw debugDrawInstance;
-	myWorld->SetDebugDraw(&debugDrawInstance);
-	uint32 flags = 0;
-	flags += b2Draw::e_aabbBit;
-	flags += b2Draw::e_shapeBit;
-	flags += b2Draw::e_jointBit;
-	flags += b2Draw::e_pairBit;
-	flags += b2Draw::e_centerOfMassBit;
-	debugDrawInstance.SetFlags(flags);
 
 	clock.restart();
 	_gameState = Game::ShowingRunFor10h01;
@@ -96,7 +84,6 @@ void Game::GameLoop()
 	{
 		GameOverScreen gameOver;
 		gameOver.Show(_mainWindow);
-		Sleep(2000);
 		_gameObjectManager.RemoveAll();
 		_gameState = Uninitialized;
 		Game::Start();
@@ -109,11 +96,12 @@ void Game::GameLoop()
 		myWorld->Step(1/60.f, 8, 3);
 
 		_gameObjectManager.UpdateAll();
+
 		ObstacleGenerator(clock.getElapsedTime().asSeconds());
 		GameOverTest();
-		//_gameObjectManager.DrawAll(_mainWindow);
 
-		myWorld->DrawDebugData();
+		_gameObjectManager.DrawAll(_mainWindow);
+
 		_mainWindow.display();
 
 		if (currentEvent.type == sf::Event::Closed) _gameState = Game::Exiting;
@@ -123,7 +111,6 @@ void Game::GameLoop()
 			if (currentEvent.key.code == sf::Keyboard::Escape) _gameState = Game::Paused;
 
 		}
-		//std::cout << (1000 / FPS - clock.getElapsedTime().asMilliseconds() + start) << std::endl;
 		Sleep(1000/FPS - clock.getElapsedTime().asMilliseconds() + start);
 		break;
 	}
@@ -181,7 +168,7 @@ void Game::ObstacleGenerator(float secondes) {
 				pugi::xml_document doc;
 				doc.load_file("../RunFor10h01/sourceXML/ObstacleBas.xml");
 				pugi::xml_node root = doc.child("VisibleGameObject");
-				Obstacle* monObsBas = new Obstacle(root, myWorld);
+				Obstacle* monObsBas = new Obstacle(root, myWorld.get());
 				_gameObjectManager.Add("obstacle" + std::to_string(nbrObstacles), monObsBas); //obstacle bas
 			}
 			
@@ -189,8 +176,8 @@ void Game::ObstacleGenerator(float secondes) {
 				pugi::xml_document doc;
 				doc.load_file("../RunFor10h01/sourceXML/ObstacleHaut.xml");
 				pugi::xml_node root = doc.child("VisibleGameObject");
-				Obstacle* monObsHaut = new Obstacle(root, myWorld);
-				_gameObjectManager.Add(std::to_string(nbrObstacles), monObsHaut); //obstacle haut
+				Obstacle* monObsHaut = new Obstacle(root, myWorld.get());
+				_gameObjectManager.Add("obstacle" + std::to_string(nbrObstacles), monObsHaut); //obstacle haut
 			}
 		}
 	}
@@ -214,7 +201,8 @@ const GameObjectManager& Game::GetGameObjectManager()
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
 GameObjectManager Game::_gameObjectManager;
-b2World* Game::myWorld =nullptr;
+std::unique_ptr<b2World> Game::myWorld =nullptr;
 int Game::nbrObstacles;
 int Game::nbrMaxObstacles;
 sf::Clock Game::clock;
+ContactListenerJump Game::contactListInstance;

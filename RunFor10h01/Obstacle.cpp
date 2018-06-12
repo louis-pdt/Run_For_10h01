@@ -42,6 +42,15 @@ Obstacle::Obstacle(pugi::xml_node root, b2World* World) : VisibleGameObject(root
 	mainBody->SetLinearVelocity(b2Vec2(root.attribute("linVelX").as_float(), root.attribute("linVelY").as_float()));
 	srand(time(NULL));
 
+	if (GetSize().x > GetSize().y)
+		Load("../RunFor10h01/images/ObstacleBas2.png");
+	else 
+		Load("../RunFor10h01/images/ObstacleHaut2.png");
+
+	assert(IsLoaded());
+	GetSprite().setPosition((GetPosition().x - GetSize().x) * 30.f, (GetPosition().y - GetSize().y) * 30.f);
+
+
 }
 
 Obstacle::~Obstacle() {
@@ -53,14 +62,9 @@ void Obstacle::Draw(sf::RenderWindow & rw)
 }
 
 void Obstacle::Update() {
-	if (mainBody->GetPosition().x <= 0 && (rand()%500) ==42) {
-		mainBody->SetTransform(b2Vec2(1920.f/30, mainBody->GetPosition().y), 0);
-		//std::cout << "coucou update obstacle ?" << std::endl;
+	if (mainBody->GetPosition().x <= 0 && (rand()%200) ==42) {
+		mainBody->SetTransform(b2Vec2(1920.f/30, mainBody->GetPosition().y), 0);//on deplace le bloc sorti tout a gauche a droite de l ecran
 	}
-	//std::cout << "coucou update obstacle ? ignored " <<std::to_string(mainBody->GetPosition().x)<<"   "<< std::to_string(mainBody->GetPosition().y)<< std::endl;
 	
+	GetSprite().setPosition((GetPosition().x - GetSize().x) * 30.f, (GetPosition().y - GetSize().y) * 30.f);
 }
-/*
-std::string GetObjectType() {
-	return "kinematic";
-}*/

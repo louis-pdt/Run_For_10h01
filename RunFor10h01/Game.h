@@ -8,6 +8,7 @@
 
 #include "GameObjectManager.h"
 #include "Player.h"
+#include "ContactListenerJump.h"
 #include "Obstacle.h"
 #include "Ground.h"
 
@@ -48,13 +49,15 @@ private:
 	static int nbrObstacles;
 	static int nbrMaxObstacles;
 
+	static ContactListenerJump contactListInstance;
+
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;
 	static GameObjectManager _gameObjectManager;
 
 	static sf::Clock clock;
 
-	static b2World* myWorld;
+	static std::unique_ptr<b2World> myWorld;
 };
 
 

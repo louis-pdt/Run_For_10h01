@@ -1,10 +1,10 @@
 <?xml version = "1.0"?>
 <VisibleGameObject 
-	label="Player" 
+	label="Test" 
 	posX="4.f" 
 	posY="5.f" 
 	width="0.6f" 
 	height="2.f" 
 	density="16.f" 
-	linVelX="0" 
-	linVelY="0" />
+	linVelX="-50.f" 
+	linVelY="10.f" />
